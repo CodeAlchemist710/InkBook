@@ -81,7 +81,7 @@ export function DashboardShell({
   return (
     <div className="flex min-h-screen">
       {/* Desktop sidebar */}
-      <aside className="hidden w-64 flex-col border-r bg-muted/30 p-4 md:flex">
+      <aside className="hidden w-64 flex-col border-r bg-card p-4 md:flex">
         <h2 className="mb-6 truncate px-3 text-lg font-semibold">
           {studio.name}
         </h2>
@@ -130,7 +130,9 @@ export function DashboardShell({
           <h2 className="truncate text-lg font-semibold">{studio.name}</h2>
         </header>
 
-        <main className="flex-1 p-6">{children}</main>
+        <main className="flex-1 bg-muted/30 p-6">
+          <div className="mx-auto max-w-[1200px]">{children}</div>
+        </main>
       </div>
     </div>
   );

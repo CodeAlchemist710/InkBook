@@ -3,7 +3,6 @@
 import { useForm } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { z } from "zod";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
 import slugify from "slugify";
@@ -27,7 +26,6 @@ const signupSchema = z.object({
 type SignupForm = z.infer<typeof signupSchema>;
 
 export default function SignupPage() {
-  const router = useRouter();
   const supabase = createClient();
 
   const {
@@ -54,19 +52,23 @@ export default function SignupPage() {
       return;
     }
 
-    const { error: studioError } = await supabase.from("studios").insert({
-      owner_id: authData.user.id,
-      name: data.studioName,
-      slug: slugify(data.studioName, { lower: true, strict: true }),
-      is_active: true,
+    const studioRes = await fetch("/api/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id: authData.user.id,
+        studio_name: data.studioName,
+        slug: slugify(data.studioName, { lower: true, strict: true }),
+      }),
     });
 
-    if (studioError) {
-      toast.error(studioError.message);
+    if (!studioRes.ok) {
+      const err = await studioRes.json();
+      toast.error(err.error || "Failed to create studio");
       return;
     }
 
-    router.push("/dashboard/settings");
+    window.location.assign("/dashboard/settings");
   }
 
   return (

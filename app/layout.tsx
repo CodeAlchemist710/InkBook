@@ -14,8 +14,20 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "InkBook",
-  description: "Multi-tenant SaaS for tattoo studios",
+  title: {
+    default: "InkBook — Professional Booking for Tattoo Studios",
+    template: "%s | InkBook",
+  },
+  description:
+    "The all-in-one platform for tattoo studios to showcase portfolios, manage bookings, and connect with clients.",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
+  openGraph: {
+    siteName: "InkBook",
+    type: "website",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({

@@ -77,7 +77,8 @@ export function ArtistForm({
 
     setUploading(true);
     const ext = file.name.split(".").pop();
-    const path = `${studioId}/avatars/${Date.now()}.${ext}`;
+    const uid = crypto.randomUUID();
+    const path = `${studioId}/avatars/${uid}.${ext}`;
 
     const { error } = await supabase.storage
       .from("portfolio")
@@ -98,7 +99,7 @@ export function ArtistForm({
   }
 
   async function generateUniqueSlug(name: string): Promise<string> {
-    let slug = slugify(name, { lower: true, strict: true });
+    const slug = slugify(name, { lower: true, strict: true });
 
     const { data: existing } = await supabase
       .from("artists")

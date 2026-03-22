@@ -3,7 +3,6 @@
 import { useForm } from "react-hook-form";
 import { standardSchemaResolver } from "@hookform/resolvers/standard-schema";
 import { z } from "zod";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { toast } from "sonner";
 import { createClient } from "@/lib/supabase/client";
@@ -25,7 +24,6 @@ const loginSchema = z.object({
 type LoginForm = z.infer<typeof loginSchema>;
 
 export default function LoginPage() {
-  const router = useRouter();
   const supabase = createClient();
 
   const {
@@ -47,7 +45,7 @@ export default function LoginPage() {
       return;
     }
 
-    router.push("/dashboard/overview");
+    window.location.assign("/dashboard/overview");
   }
 
   return (

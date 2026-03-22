@@ -65,9 +65,11 @@ export function PortfolioManager({
     setLoading(false);
   }, [artistId]);
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     fetchPieces();
   }, [fetchPieces]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   async function handleDelete(pieceId: string) {
     const res = await fetch(

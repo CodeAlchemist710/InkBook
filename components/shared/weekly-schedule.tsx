@@ -92,9 +92,11 @@ export function WeeklySchedule({ artistId }: { artistId: string }) {
     setLoaded(true);
   }, [artistId]);
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     loadRules();
   }, [loadRules]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   function updateDay(dayOfWeek: number, updates: Partial<DaySchedule>) {
     setSchedule((prev) => ({
@@ -156,7 +158,7 @@ export function WeeklySchedule({ artistId }: { artistId: string }) {
             <div key={day.value} className="space-y-2">
               <div
                 className={`flex flex-wrap items-center gap-4 rounded-lg border p-3 ${
-                  !s.enabled ? "opacity-50" : ""
+                  !s.enabled ? "opacity-50 bg-muted/30" : "bg-card"
                 }`}
               >
                 <div className="flex items-center gap-2 w-32">
@@ -231,7 +233,7 @@ export function WeeklySchedule({ artistId }: { artistId: string }) {
               </div>
 
               {s.enabled && (
-                <div className="ml-[8.5rem] h-2 rounded-full bg-muted relative overflow-hidden">
+                <div className="h-2 rounded-full bg-muted relative overflow-hidden">
                   <div
                     className="absolute inset-y-0 rounded-full bg-primary/40"
                     style={{

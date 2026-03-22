@@ -87,7 +87,8 @@ export function SettingsForm({ studio }: { studio: Studio }) {
     if (!file) return;
 
     const extension = file.name.split(".").pop();
-    const path = `${studio.id}/${type}-${Date.now()}.${extension}`;
+    const uid = crypto.randomUUID();
+    const path = `${studio.id}/${type}-${uid}.${extension}`;
 
     const { error: uploadError } = await supabase.storage
       .from("studio-assets")

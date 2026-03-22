@@ -15,7 +15,7 @@ export default function PublicLayout({
           <nav className="flex items-center gap-4">
             <Link
               href="/login"
-              className="text-sm text-zinc-400 transition-colors hover:text-zinc-100"
+              className="text-sm text-zinc-300 transition-colors hover:text-white"
             >
               Studio Login
             </Link>
@@ -26,11 +26,11 @@ export default function PublicLayout({
       <main className="flex-1">{children}</main>
 
       <footer className="border-t border-zinc-800 py-8">
-        <div className="mx-auto max-w-6xl px-4 text-center text-sm text-zinc-500">
+        <div className="mx-auto max-w-6xl px-4 text-center text-sm text-zinc-400">
           <p>&copy; {new Date().getFullYear()} InkBook. All rights reserved.</p>
           <p className="mt-1">
             Powered by{" "}
-            <span className="font-medium text-zinc-400">InkBook</span>
+            <span className="font-medium text-zinc-300">InkBook</span>
           </p>
         </div>
       </footer>

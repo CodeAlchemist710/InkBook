@@ -11,7 +11,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import { ImageIcon, X } from "lucide-react";
+import { ImageIcon } from "lucide-react";
 import type { PortfolioPiece } from "@/lib/types/database";
 
 export function PortfolioGallery({
@@ -42,7 +42,7 @@ export function PortfolioGallery({
         <h3 className="text-lg font-medium text-zinc-300">
           No portfolio pieces yet
         </h3>
-        <p className="text-sm text-zinc-500">
+        <p className="text-sm text-zinc-300">
           {artistName} hasn&apos;t uploaded any work yet. Check back soon!
         </p>
       </div>
@@ -62,7 +62,7 @@ export function PortfolioGallery({
             onClick={() => setActiveFilter(null)}
             className={
               activeFilter !== null
-                ? "border-zinc-700 text-zinc-300 hover:bg-zinc-800"
+                ? "border-white/20 text-white hover:bg-white/10"
                 : ""
             }
           >
@@ -78,7 +78,7 @@ export function PortfolioGallery({
               }
               className={
                 activeFilter !== style
-                  ? "border-zinc-700 text-zinc-300 hover:bg-zinc-800"
+                  ? "border-white/20 text-white hover:bg-white/10"
                   : ""
               }
             >
@@ -147,7 +147,7 @@ export function PortfolioGallery({
                     {selectedPiece.title || "Untitled"}
                   </DialogTitle>
                   {selectedPiece.description && (
-                    <DialogDescription className="text-zinc-400">
+                    <DialogDescription className="text-zinc-300">
                       {selectedPiece.description}
                     </DialogDescription>
                   )}
@@ -157,7 +157,7 @@ export function PortfolioGallery({
                     <Badge
                       key={s}
                       variant="outline"
-                      className="border-zinc-700 text-zinc-400"
+                      className="border-zinc-600 text-zinc-200"
                     >
                       {s}
                     </Badge>

@@ -74,8 +74,28 @@ export default async function StudioPage({ params }: Props) {
     }
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: studio.name,
+    description: studio.description ?? undefined,
+    address: studio.address
+      ? {
+          "@type": "PostalAddress",
+          streetAddress: studio.address,
+          addressLocality: studio.city ?? undefined,
+        }
+      : undefined,
+    image: studio.cover_image_url ?? undefined,
+    telephone: studio.phone ?? undefined,
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Hero Banner */}
       <div className="relative h-64 sm:h-80">
         {studio.cover_image_url ? (
@@ -110,7 +130,7 @@ export default async function StudioPage({ params }: Props) {
             <div>
               <h1 className="text-3xl font-bold">{studio.name}</h1>
               {(studio.address || studio.city) && (
-                <p className="mt-1 flex items-center gap-1 text-sm text-zinc-400">
+                <p className="mt-1 flex items-center gap-1 text-sm text-zinc-300">
                   <MapPin className="h-3.5 w-3.5" />
                   {[studio.address, studio.city].filter(Boolean).join(", ")}
                 </p>
@@ -124,7 +144,7 @@ export default async function StudioPage({ params }: Props) {
         {/* Studio Info */}
         <div className="mb-8 flex flex-wrap gap-3">
           {studio.whatsapp_number && (
-            <Button asChild variant="outline" className="border-zinc-700 text-zinc-300 hover:bg-zinc-800">
+            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10">
               <a
                 href={getWhatsAppLink(studio.whatsapp_number)}
                 target="_blank"
@@ -136,7 +156,7 @@ export default async function StudioPage({ params }: Props) {
             </Button>
           )}
           {studio.instagram_url && (
-            <Button asChild variant="outline" className="border-zinc-700 text-zinc-300 hover:bg-zinc-800">
+            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10">
               <a
                 href={studio.instagram_url}
                 target="_blank"
@@ -150,14 +170,14 @@ export default async function StudioPage({ params }: Props) {
         </div>
 
         {studio.description && (
-          <p className="mb-8 max-w-2xl text-zinc-400">{studio.description}</p>
+          <p className="mb-8 max-w-2xl text-zinc-300">{studio.description}</p>
         )}
 
         {/* Artists */}
         <h2 className="mb-6 text-2xl font-bold">Our Artists</h2>
 
         {!artists || artists.length === 0 ? (
-          <p className="text-zinc-500">
+          <p className="text-zinc-300">
             No artists to display yet. Check back soon!
           </p>
         ) : (
@@ -212,7 +232,7 @@ export default async function StudioPage({ params }: Props) {
                           <Badge
                             key={s}
                             variant="outline"
-                            className="border-zinc-700 text-xs text-zinc-400"
+                            className="border-zinc-600 text-xs text-zinc-200"
                           >
                             {s}
                           </Badge>

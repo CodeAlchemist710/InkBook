@@ -80,7 +80,7 @@ export function ArtistCard({
 
   return (
     <>
-      <Card>
+      <Card className="shadow-sm transition-shadow duration-150 hover:shadow-md">
         <CardContent className="pt-4">
           <div className="flex items-start gap-4">
             <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full bg-muted">

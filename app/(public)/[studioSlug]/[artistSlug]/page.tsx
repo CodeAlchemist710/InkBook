@@ -87,10 +87,26 @@ export default async function ArtistPortfolioPage({ params }: Props) {
   const whatsAppPhone =
     artist.whatsapp_number ?? studio.whatsapp_number ?? null;
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: artist.name,
+    description: artist.bio ?? undefined,
+    image: artist.avatar_url ?? undefined,
+    worksFor: {
+      "@type": "LocalBusiness",
+      name: studio.name,
+    },
+  };
+
   return (
     <div className="mx-auto max-w-6xl px-4 py-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Breadcrumb */}
-      <nav className="mb-6 flex items-center gap-1 text-sm text-zinc-500">
+      <nav className="mb-6 flex items-center gap-1 text-sm text-zinc-400">
         <Link href={`/${studioSlug}`} className="hover:text-zinc-300">
           {studio.name}
         </Link>
@@ -119,7 +135,7 @@ export default async function ArtistPortfolioPage({ params }: Props) {
         <div className="flex-1">
           <h1 className="text-3xl font-bold">{artist.name}</h1>
           {artist.bio && (
-            <p className="mt-2 max-w-2xl text-zinc-400">{artist.bio}</p>
+            <p className="mt-2 max-w-2xl text-zinc-300">{artist.bio}</p>
           )}
           {(artist.specialties ?? []).length > 0 && (
             <div className="mt-3 flex flex-wrap gap-1.5">
@@ -127,7 +143,7 @@ export default async function ArtistPortfolioPage({ params }: Props) {
                 <Badge
                   key={s}
                   variant="outline"
-                  className="border-zinc-700 text-zinc-400"
+                  className="border-zinc-600 text-zinc-200"
                 >
                   {s}
                 </Badge>
@@ -146,7 +162,7 @@ export default async function ArtistPortfolioPage({ params }: Props) {
           </Link>
         </Button>
         {whatsAppPhone && (
-          <Button asChild variant="outline" className="border-zinc-700 text-zinc-300 hover:bg-zinc-800">
+          <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10">
             <a
               href={getBookingWhatsAppLink({
                 phone: whatsAppPhone,
@@ -162,7 +178,7 @@ export default async function ArtistPortfolioPage({ params }: Props) {
           </Button>
         )}
         {artist.instagram_url && (
-          <Button asChild variant="outline" className="border-zinc-700 text-zinc-300 hover:bg-zinc-800">
+          <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10">
             <a
               href={artist.instagram_url}
               target="_blank"

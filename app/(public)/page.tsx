@@ -56,7 +56,7 @@ export default async function LandingPage() {
             <br />
             <span className="text-primary">tattoo studios</span>
           </h1>
-          <p className="mx-auto mt-6 max-w-2xl text-lg text-zinc-400">
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-zinc-300">
             Showcase your portfolio, manage your schedule, and let clients book
             sessions — all in one platform built for tattoo artists.
           </p>
@@ -89,7 +89,7 @@ export default async function LandingPage() {
                   <feature.icon className="h-6 w-6 text-primary" />
                 </div>
                 <h3 className="text-lg font-semibold">{feature.title}</h3>
-                <p className="mt-2 text-sm text-zinc-400">
+                <p className="mt-2 text-sm text-zinc-300">
                   {feature.description}
                 </p>
               </div>
@@ -108,7 +108,7 @@ export default async function LandingPage() {
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {studios.map((studio) => (
                 <Link key={studio.id} href={`/${studio.slug}`}>
-                  <Card className="border-zinc-800 bg-zinc-900/50 transition-colors hover:border-zinc-700">
+                  <Card className="border-white/10 bg-zinc-900 transition-colors hover:border-white/20">
                     <CardContent className="flex items-center gap-4 p-4">
                       {studio.logo_url ? (
                         <div className="relative h-14 w-14 shrink-0 overflow-hidden rounded-full">
@@ -129,10 +129,10 @@ export default async function LandingPage() {
                           {studio.name}
                         </h3>
                         {studio.city && (
-                          <p className="text-sm text-zinc-500">{studio.city}</p>
+                          <p className="text-sm text-zinc-300">{studio.city}</p>
                         )}
                         {studio.description && (
-                          <p className="mt-1 truncate text-sm text-zinc-400">
+                          <p className="mt-1 truncate text-sm text-zinc-300">
                             {studio.description}
                           </p>
                         )}

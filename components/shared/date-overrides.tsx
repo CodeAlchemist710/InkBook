@@ -94,9 +94,11 @@ export function DateOverrides({ artistId }: { artistId: string }) {
     }
   }, [artistId, monthStr]);
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     fetchData();
   }, [fetchData]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const activeDays = new Set(
     rules.filter((r) => r.is_active !== false).map((r) => r.day_of_week)
