@@ -8,10 +8,11 @@
 - TypeScript strict mode, pnpm
 
 ## Environment Variables
-- NEXT_PUBLIC_SUPABASE_URL
-- NEXT_PUBLIC_SUPABASE_ANON_KEY
-- SUPABASE_SERVICE_ROLE_KEY (server only)
-- NEXT_PUBLIC_APP_URL
+- NEXT_PUBLIC_SUPABASE_URL=https://oqawitvkwcbdsnevfygp.supabase.co
+- NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9xYXdpdHZrd2NiZHNuZXZmeWdwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQxMzU3NjcsImV4cCI6MjA4OTcxMTc2N30.ucUGTkyUJ1yPMZtKC1o4k3pp_LSl6Cq6wbIDvBnFEyE
+- SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9xYXdpdHZrd2NiZHNuZXZmeWdwIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc3NDEzNTc2NywiZXhwIjoyMDg5NzExNzY3fQ.rh7rRj1XPpVZRYZRUiSm1VjQ8SmAHodqNNvWI4XWWxc
+- NEXT_PUBLIC_APP_URL=http://localhost:3000
+
 
 ## File Structure
 - app/(auth)/ — Login, signup, callback
