@@ -157,32 +157,30 @@ export default async function ArtistPortfolioPage({ params }: Props) {
           </Link>
         </Button>
         {whatsAppPhone && (
-          <Button asChild variant="outline">
-            <a
-              href={getBookingWhatsAppLink({
-                phone: whatsAppPhone,
-                artistName: artist.name,
-                studioName: studio.name,
-              })}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <MessageCircle className="mr-2 h-4 w-4" />
-              WhatsApp
-            </a>
-          </Button>
+          <a
+            href={getBookingWhatsAppLink({
+              phone: whatsAppPhone,
+              artistName: artist.name,
+              studioName: studio.name,
+            })}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-9 items-center gap-2 rounded-md border border-zinc-200 bg-white px-4 text-sm font-medium text-zinc-900 shadow-sm transition-colors hover:bg-zinc-50"
+          >
+            <MessageCircle className="h-4 w-4" />
+            WhatsApp
+          </a>
         )}
         {artist.instagram_url && (
-          <Button asChild variant="outline">
-            <a
-              href={artist.instagram_url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Instagram className="mr-2 h-4 w-4" />
-              Instagram
-            </a>
-          </Button>
+          <a
+            href={artist.instagram_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-9 items-center gap-2 rounded-md border border-zinc-200 bg-white px-4 text-sm font-medium text-zinc-900 shadow-sm transition-colors hover:bg-zinc-50"
+          >
+            <Instagram className="h-4 w-4" />
+            Instagram
+          </a>
         )}
       </div>
 

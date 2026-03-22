@@ -143,28 +143,26 @@ export default async function StudioPage({ params }: Props) {
         {/* Studio Info */}
         <div className="mb-8 flex flex-wrap gap-3">
           {studio.whatsapp_number && (
-            <Button asChild variant="outline">
-              <a
-                href={getWhatsAppLink(studio.whatsapp_number)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <MessageCircle className="mr-2 h-4 w-4" />
-                WhatsApp
-              </a>
-            </Button>
+            <a
+              href={getWhatsAppLink(studio.whatsapp_number)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-9 items-center gap-2 rounded-md border border-zinc-200 bg-white px-4 text-sm font-medium text-zinc-900 shadow-sm transition-colors hover:bg-zinc-50"
+            >
+              <MessageCircle className="h-4 w-4" />
+              WhatsApp
+            </a>
           )}
           {studio.instagram_url && (
-            <Button asChild variant="outline">
-              <a
-                href={studio.instagram_url}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Instagram className="mr-2 h-4 w-4" />
-                Instagram
-              </a>
-            </Button>
+            <a
+              href={studio.instagram_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex h-9 items-center gap-2 rounded-md border border-zinc-200 bg-white px-4 text-sm font-medium text-zinc-900 shadow-sm transition-colors hover:bg-zinc-50"
+            >
+              <Instagram className="h-4 w-4" />
+              Instagram
+            </a>
           )}
         </div>
 
