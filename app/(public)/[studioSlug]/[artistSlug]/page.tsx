@@ -36,7 +36,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!artist) return { title: "Not Found" };
 
-  // Get featured image for OG
   const { data: featured } = await supabase
     .from("portfolio_pieces")
     .select("image_url")
@@ -106,17 +105,17 @@ export default async function ArtistPortfolioPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Breadcrumb */}
-      <nav className="mb-6 flex items-center gap-1 text-sm text-zinc-400">
-        <Link href={`/${studioSlug}`} className="hover:text-zinc-300">
+      <nav className="mb-6 flex items-center gap-1 text-sm text-zinc-500">
+        <Link href={`/${studioSlug}`} className="hover:text-zinc-900">
           {studio.name}
         </Link>
         <ChevronRight className="h-3.5 w-3.5" />
-        <span className="text-zinc-300">{artist.name}</span>
+        <span className="text-zinc-900">{artist.name}</span>
       </nav>
 
       {/* Artist Hero */}
       <div className="mb-8 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
-        <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 border-zinc-800">
+        <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full border-2 border-zinc-200 shadow-sm">
           {artist.avatar_url ? (
             <Image
               src={artist.avatar_url}
@@ -126,25 +125,21 @@ export default async function ArtistPortfolioPage({ params }: Props) {
               priority
             />
           ) : (
-            <div className="flex h-full w-full items-center justify-center bg-zinc-800">
-              <User className="h-10 w-10 text-zinc-500" />
+            <div className="flex h-full w-full items-center justify-center bg-zinc-100">
+              <User className="h-10 w-10 text-zinc-400" />
             </div>
           )}
         </div>
 
         <div className="flex-1">
-          <h1 className="text-3xl font-bold">{artist.name}</h1>
+          <h1 className="text-3xl font-bold text-zinc-900">{artist.name}</h1>
           {artist.bio && (
-            <p className="mt-2 max-w-2xl text-zinc-300">{artist.bio}</p>
+            <p className="mt-2 max-w-2xl text-zinc-600">{artist.bio}</p>
           )}
           {(artist.specialties ?? []).length > 0 && (
             <div className="mt-3 flex flex-wrap gap-1.5">
               {(artist.specialties ?? []).map((s) => (
-                <Badge
-                  key={s}
-                  variant="outline"
-                  className="border-zinc-600 text-zinc-200"
-                >
+                <Badge key={s} variant="secondary" className="text-xs">
                   {s}
                 </Badge>
               ))}
@@ -162,7 +157,7 @@ export default async function ArtistPortfolioPage({ params }: Props) {
           </Link>
         </Button>
         {whatsAppPhone && (
-          <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10">
+          <Button asChild variant="outline">
             <a
               href={getBookingWhatsAppLink({
                 phone: whatsAppPhone,
@@ -178,7 +173,7 @@ export default async function ArtistPortfolioPage({ params }: Props) {
           </Button>
         )}
         {artist.instagram_url && (
-          <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10">
+          <Button asChild variant="outline">
             <a
               href={artist.instagram_url}
               target="_blank"

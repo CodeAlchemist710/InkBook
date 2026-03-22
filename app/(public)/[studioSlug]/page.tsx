@@ -56,7 +56,6 @@ export default async function StudioPage({ params }: Props) {
     .eq("is_active", true)
     .order("name", { ascending: true });
 
-  // Get featured pieces for each artist
   const artistIds = (artists ?? []).map((a) => a.id);
   let featuredPieces: Record<string, string> = {};
 
@@ -107,14 +106,14 @@ export default async function StudioPage({ params }: Props) {
             priority
           />
         ) : (
-          <div className="h-full w-full bg-gradient-to-br from-zinc-800 to-zinc-900" />
+          <div className="h-full w-full bg-gradient-to-br from-zinc-200 to-zinc-300" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-white via-white/60 to-transparent" />
 
         <div className="absolute bottom-0 left-0 right-0 p-6">
           <div className="mx-auto flex max-w-6xl items-end gap-4">
             {studio.logo_url ? (
-              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 border-zinc-800">
+              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 border-white shadow-lg">
                 <Image
                   src={studio.logo_url}
                   alt={studio.name}
@@ -123,14 +122,14 @@ export default async function StudioPage({ params }: Props) {
                 />
               </div>
             ) : (
-              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl border-2 border-zinc-800 bg-zinc-900 text-2xl font-bold text-zinc-400">
+              <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-xl border-2 border-white bg-zinc-100 text-2xl font-bold text-zinc-500 shadow-lg">
                 {studio.name.charAt(0)}
               </div>
             )}
             <div>
-              <h1 className="text-3xl font-bold">{studio.name}</h1>
+              <h1 className="text-3xl font-bold text-zinc-900">{studio.name}</h1>
               {(studio.address || studio.city) && (
-                <p className="mt-1 flex items-center gap-1 text-sm text-zinc-300">
+                <p className="mt-1 flex items-center gap-1 text-sm text-zinc-600">
                   <MapPin className="h-3.5 w-3.5" />
                   {[studio.address, studio.city].filter(Boolean).join(", ")}
                 </p>
@@ -144,7 +143,7 @@ export default async function StudioPage({ params }: Props) {
         {/* Studio Info */}
         <div className="mb-8 flex flex-wrap gap-3">
           {studio.whatsapp_number && (
-            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10">
+            <Button asChild variant="outline">
               <a
                 href={getWhatsAppLink(studio.whatsapp_number)}
                 target="_blank"
@@ -156,7 +155,7 @@ export default async function StudioPage({ params }: Props) {
             </Button>
           )}
           {studio.instagram_url && (
-            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10">
+            <Button asChild variant="outline">
               <a
                 href={studio.instagram_url}
                 target="_blank"
@@ -170,14 +169,14 @@ export default async function StudioPage({ params }: Props) {
         </div>
 
         {studio.description && (
-          <p className="mb-8 max-w-2xl text-zinc-300">{studio.description}</p>
+          <p className="mb-8 max-w-2xl text-zinc-600">{studio.description}</p>
         )}
 
         {/* Artists */}
-        <h2 className="mb-6 text-2xl font-bold">Our Artists</h2>
+        <h2 className="mb-6 text-2xl font-bold text-zinc-900">Our Artists</h2>
 
         {!artists || artists.length === 0 ? (
-          <p className="text-zinc-300">
+          <p className="text-zinc-500">
             No artists to display yet. Check back soon!
           </p>
         ) : (
@@ -187,9 +186,8 @@ export default async function StudioPage({ params }: Props) {
               return (
                 <div
                   key={artist.id}
-                  className="group relative overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900/50"
+                  className="group overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm transition-shadow hover:shadow-md"
                 >
-                  {/* Featured image background */}
                   <div className="relative aspect-[4/3]">
                     {featuredImage ? (
                       <Image
@@ -199,17 +197,15 @@ export default async function StudioPage({ params }: Props) {
                         className="object-cover transition-transform group-hover:scale-105"
                       />
                     ) : (
-                      <div className="flex h-full w-full items-center justify-center bg-zinc-800">
-                        <User className="h-16 w-16 text-zinc-600" />
+                      <div className="flex h-full w-full items-center justify-center bg-zinc-100">
+                        <User className="h-16 w-16 text-zinc-300" />
                       </div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/30 to-transparent" />
                   </div>
 
-                  {/* Artist info */}
-                  <div className="relative p-4">
+                  <div className="p-4">
                     <div className="mb-2 flex items-center gap-3">
-                      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-zinc-700">
+                      <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-full border border-zinc-200">
                         {artist.avatar_url ? (
                           <Image
                             src={artist.avatar_url}
@@ -218,12 +214,12 @@ export default async function StudioPage({ params }: Props) {
                             className="object-cover"
                           />
                         ) : (
-                          <div className="flex h-full w-full items-center justify-center bg-zinc-800 text-sm font-medium text-zinc-400">
+                          <div className="flex h-full w-full items-center justify-center bg-zinc-100 text-sm font-medium text-zinc-500">
                             {artist.name.charAt(0)}
                           </div>
                         )}
                       </div>
-                      <h3 className="font-semibold">{artist.name}</h3>
+                      <h3 className="font-semibold text-zinc-900">{artist.name}</h3>
                     </div>
 
                     {(artist.specialties ?? []).length > 0 && (
@@ -231,8 +227,8 @@ export default async function StudioPage({ params }: Props) {
                         {(artist.specialties ?? []).slice(0, 4).map((s) => (
                           <Badge
                             key={s}
-                            variant="outline"
-                            className="border-zinc-600 text-xs text-zinc-200"
+                            variant="secondary"
+                            className="text-xs"
                           >
                             {s}
                           </Badge>
@@ -241,7 +237,7 @@ export default async function StudioPage({ params }: Props) {
                     )}
 
                     <div className="flex gap-2">
-                      <Button asChild size="sm" variant="outline" className="flex-1 border-zinc-700 text-zinc-300 hover:bg-zinc-800">
+                      <Button asChild size="sm" variant="outline" className="flex-1">
                         <Link href={`/${studioSlug}/${artist.slug}`}>
                           View Portfolio
                         </Link>

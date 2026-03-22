@@ -214,16 +214,16 @@ export function BookingFlow({
       .join(", ");
 
     return (
-      <Card className="border-zinc-800 bg-zinc-900/50 text-center">
+      <Card className="border-zinc-200 bg-white text-center">
         <CardContent className="py-12">
           <CheckCircle2 className="mx-auto mb-4 h-16 w-16 text-green-500" />
-          <h2 className="text-2xl font-bold text-zinc-100">
+          <h2 className="text-2xl font-bold text-zinc-900">
             Booking Confirmed!
           </h2>
-          <p className="mt-2 text-sm text-zinc-300">
+          <p className="mt-2 text-sm text-zinc-600">
             Reference: {confirmedBooking.id.slice(0, 8).toUpperCase()}
           </p>
-          <div className="mx-auto mt-6 max-w-sm space-y-2 text-sm text-zinc-300">
+          <div className="mx-auto mt-6 max-w-sm space-y-2 text-sm text-zinc-600">
             <p>
               <strong>Date:</strong> {selectedDate}
             </p>
@@ -239,7 +239,7 @@ export function BookingFlow({
               </p>
             )}
           </div>
-          <p className="mt-6 text-sm text-zinc-300">
+          <p className="mt-6 text-sm text-zinc-600">
             The artist will confirm your booking shortly — you&apos;ll receive
             an email confirmation.
           </p>
@@ -256,7 +256,8 @@ export function BookingFlow({
                 </a>
               </Button>
             )}
-            <Button asChild variant="outline" className="border-white/20 text-white hover:bg-white/10">
+            <Button asChild variant="outline"
+>
               <Link href={`/${studio.slug}/${artist.slug}`}>
                 Back to {artist.name}&apos;s portfolio
               </Link>
@@ -290,14 +291,14 @@ export function BookingFlow({
                   ? "bg-primary text-primary-foreground"
                   : s < step
                     ? "bg-green-600 text-white"
-                    : "bg-zinc-800 text-zinc-300"
+                    : "bg-zinc-100 text-zinc-600"
               }`}
             >
               {s < step ? "✓" : s}
             </div>
             <span
               className={
-                s === step ? "text-zinc-100" : "text-zinc-300"
+                s === step ? "text-zinc-900" : "text-zinc-600"
               }
             >
               {s === 1 ? "Date & Time" : s === 2 ? "Your Details" : "Review"}
@@ -309,9 +310,11 @@ export function BookingFlow({
 
       {/* Step 1: Date & Time */}
       {step === 1 && (
-        <Card className="border-zinc-800 bg-zinc-900/50">
+        <Card
+>
           <CardHeader>
-            <CardTitle className="text-zinc-100">Choose Date & Time</CardTitle>
+            <CardTitle
+>Choose Date & Time</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             {/* Calendar */}
@@ -324,7 +327,7 @@ export function BookingFlow({
                 >
                   <ChevronLeft className="h-4 w-4" />
                 </Button>
-                <span className="text-sm font-medium text-zinc-200">
+                <span className="text-sm font-medium text-zinc-700">
                   {format(currentMonth, "MMMM yyyy")}
                 </span>
                 <Button
@@ -341,7 +344,7 @@ export function BookingFlow({
                   (d) => (
                     <div
                       key={d}
-                      className="p-1 text-xs font-medium text-zinc-300"
+                      className="p-1 text-xs font-medium text-zinc-600"
                     >
                       {d}
                     </div>
@@ -368,7 +371,7 @@ export function BookingFlow({
                             : isSelected
                               ? "bg-primary text-primary-foreground font-medium"
                               : isAvailable
-                                ? "text-zinc-200 hover:bg-zinc-800 cursor-pointer"
+                                ? "text-zinc-700 hover:bg-zinc-100 cursor-pointer"
                                 : "text-zinc-600"
                       }`}
                     >
@@ -378,7 +381,7 @@ export function BookingFlow({
                 })}
               </div>
               {loadingDates && (
-                <p className="mt-2 text-center text-xs text-zinc-300">
+                <p className="mt-2 text-center text-xs text-zinc-600">
                   Loading availability...
                 </p>
               )}
@@ -387,13 +390,13 @@ export function BookingFlow({
             {/* Time slots */}
             {selectedDate && (
               <div>
-                <h3 className="mb-3 text-sm font-medium text-zinc-300">
+                <h3 className="mb-3 text-sm font-medium text-zinc-600">
                   Available times for {selectedDate}
                 </h3>
                 {loadingSlots ? (
-                  <p className="text-sm text-zinc-300">Loading slots...</p>
+                  <p className="text-sm text-zinc-600">Loading slots...</p>
                 ) : slots.length === 0 ? (
-                  <p className="text-sm text-zinc-300">
+                  <p className="text-sm text-zinc-600">
                     No available slots for this date.
                   </p>
                 ) : (
@@ -407,8 +410,8 @@ export function BookingFlow({
                           selectedSlot?.start === slot.start
                             ? "border-primary bg-primary/20 text-primary font-medium"
                             : slot.available
-                              ? "border-zinc-700 text-zinc-300 hover:border-zinc-500"
-                              : "border-zinc-800 text-zinc-600 line-through"
+                              ? "border-zinc-300 text-zinc-600 hover:border-zinc-400"
+                              : "border-zinc-200 text-zinc-600 line-through"
                         }`}
                       >
                         {slot.start}
@@ -430,9 +433,11 @@ export function BookingFlow({
 
       {/* Step 2: Details */}
       {step === 2 && (
-        <Card className="border-zinc-800 bg-zinc-900/50">
+        <Card
+>
           <CardHeader>
-            <CardTitle className="text-zinc-100">Your Details</CardTitle>
+            <CardTitle
+>Your Details</CardTitle>
           </CardHeader>
           <CardContent>
             <form
@@ -440,10 +445,11 @@ export function BookingFlow({
               className="space-y-4"
             >
               <div className="space-y-2">
-                <Label className="text-zinc-300">Name</Label>
+                <Label>Name</Label>
                 <Input
                   {...register("client_name")}
-                  className="border-zinc-700 bg-zinc-800/50"
+                 
+
                 />
                 {errors.client_name && (
                   <p className="text-sm text-destructive">
@@ -453,11 +459,12 @@ export function BookingFlow({
               </div>
 
               <div className="space-y-2">
-                <Label className="text-zinc-300">Email</Label>
+                <Label>Email</Label>
                 <Input
                   type="email"
                   {...register("client_email")}
-                  className="border-zinc-700 bg-zinc-800/50"
+                 
+
                 />
                 {errors.client_email && (
                   <p className="text-sm text-destructive">
@@ -467,10 +474,11 @@ export function BookingFlow({
               </div>
 
               <div className="space-y-2">
-                <Label className="text-zinc-300">Phone</Label>
+                <Label>Phone</Label>
                 <Input
                   {...register("client_phone")}
-                  className="border-zinc-700 bg-zinc-800/50"
+                 
+
                 />
                 {errors.client_phone && (
                   <p className="text-sm text-destructive">
@@ -480,11 +488,12 @@ export function BookingFlow({
               </div>
 
               <div className="space-y-2">
-                <Label className="text-zinc-300">Tattoo description</Label>
+                <Label>Tattoo description</Label>
                 <Textarea
                   {...register("description")}
                   placeholder="Describe the tattoo you want..."
-                  className="border-zinc-700 bg-zinc-800/50"
+                 
+
                 />
                 {errors.description && (
                   <p className="text-sm text-destructive">
@@ -494,12 +503,13 @@ export function BookingFlow({
               </div>
 
               <div className="space-y-2">
-                <Label className="text-zinc-300">Placement</Label>
+                <Label>Placement</Label>
                 <Select
                   onValueChange={(v) => setValue("placement", v)}
                   defaultValue={getValues("placement")}
                 >
-                  <SelectTrigger className="border-zinc-700 bg-zinc-800/50">
+                  <SelectTrigger
+>
                     <SelectValue placeholder="Select body part" />
                   </SelectTrigger>
                   <SelectContent>
@@ -513,12 +523,13 @@ export function BookingFlow({
               </div>
 
               <div className="space-y-2">
-                <Label className="text-zinc-300">Estimated size</Label>
+                <Label>Estimated size</Label>
                 <Select
                   onValueChange={(v) => setValue("estimated_size", v)}
                   defaultValue={getValues("estimated_size")}
                 >
-                  <SelectTrigger className="border-zinc-700 bg-zinc-800/50">
+                  <SelectTrigger
+>
                     <SelectValue placeholder="Select size" />
                   </SelectTrigger>
                   <SelectContent>
@@ -532,7 +543,7 @@ export function BookingFlow({
               </div>
 
               <div className="space-y-2">
-                <Label className="text-zinc-300">
+                <Label>
                   Reference images (optional)
                 </Label>
                 {referenceUrls.map((url, i) => (
@@ -545,7 +556,8 @@ export function BookingFlow({
                         setReferenceUrls(updated);
                       }}
                       placeholder="https://..."
-                      className="border-zinc-700 bg-zinc-800/50"
+                     
+
                     />
                     <Button
                       type="button"
@@ -593,28 +605,30 @@ export function BookingFlow({
 
       {/* Step 3: Review */}
       {step === 3 && (
-        <Card className="border-zinc-800 bg-zinc-900/50">
+        <Card
+>
           <CardHeader>
-            <CardTitle className="text-zinc-100">Review & Confirm</CardTitle>
+            <CardTitle
+>Review & Confirm</CardTitle>
           </CardHeader>
           <CardContent className="space-y-6">
             {/* Appointment */}
-            <div className="rounded-lg border border-zinc-800 p-4">
+            <div className="rounded-lg border border-zinc-200 p-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium text-zinc-300">
+                <h3 className="text-sm font-medium text-zinc-600">
                   Appointment
                 </h3>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setStep(1)}
-                  className="text-zinc-300"
+                  className="text-zinc-600"
                 >
                   <Pencil className="mr-1 h-3 w-3" />
                   Edit
                 </Button>
               </div>
-              <div className="mt-2 space-y-1 text-sm text-zinc-200">
+              <div className="mt-2 space-y-1 text-sm text-zinc-700">
                 <p>
                   <strong>Date:</strong> {selectedDate}
                 </p>
@@ -638,22 +652,22 @@ export function BookingFlow({
             </div>
 
             {/* Client details */}
-            <div className="rounded-lg border border-zinc-800 p-4">
+            <div className="rounded-lg border border-zinc-200 p-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium text-zinc-300">
+                <h3 className="text-sm font-medium text-zinc-600">
                   Your Details
                 </h3>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setStep(2)}
-                  className="text-zinc-300"
+                  className="text-zinc-600"
                 >
                   <Pencil className="mr-1 h-3 w-3" />
                   Edit
                 </Button>
               </div>
-              <div className="mt-2 space-y-1 text-sm text-zinc-200">
+              <div className="mt-2 space-y-1 text-sm text-zinc-700">
                 <p>
                   <strong>Name:</strong> {getValues("client_name")}
                 </p>
@@ -667,22 +681,22 @@ export function BookingFlow({
             </div>
 
             {/* Tattoo details */}
-            <div className="rounded-lg border border-zinc-800 p-4">
+            <div className="rounded-lg border border-zinc-200 p-4">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium text-zinc-300">
+                <h3 className="text-sm font-medium text-zinc-600">
                   Tattoo Details
                 </h3>
                 <Button
                   variant="ghost"
                   size="sm"
                   onClick={() => setStep(2)}
-                  className="text-zinc-300"
+                  className="text-zinc-600"
                 >
                   <Pencil className="mr-1 h-3 w-3" />
                   Edit
                 </Button>
               </div>
-              <div className="mt-2 space-y-1 text-sm text-zinc-200">
+              <div className="mt-2 space-y-1 text-sm text-zinc-700">
                 <p>
                   <strong>Description:</strong> {getValues("description")}
                 </p>
@@ -733,7 +747,7 @@ export function BookingFlow({
                     })}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-zinc-200"
+                    className="inline-flex items-center gap-2 text-sm text-zinc-400 hover:text-zinc-700"
                   >
                     <MessageCircle className="h-4 w-4" />
                     Have questions? Message {artist.name} on WhatsApp

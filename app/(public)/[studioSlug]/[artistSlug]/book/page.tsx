@@ -64,19 +64,19 @@ export default async function BookingPage({ params }: Props) {
   return (
     <div className="mx-auto max-w-2xl px-4 py-8">
       {/* Breadcrumb */}
-      <nav className="mb-6 flex items-center gap-1 text-sm text-zinc-400">
-        <Link href={`/${studioSlug}`} className="hover:text-zinc-300">
+      <nav className="mb-6 flex items-center gap-1 text-sm text-zinc-500">
+        <Link href={`/${studioSlug}`} className="hover:text-zinc-900">
           {studio.name}
         </Link>
         <ChevronRight className="h-3.5 w-3.5" />
         <Link
           href={`/${studioSlug}/${artistSlug}`}
-          className="hover:text-zinc-300"
+          className="hover:text-zinc-900"
         >
           {artist.name}
         </Link>
         <ChevronRight className="h-3.5 w-3.5" />
-        <span className="text-zinc-300">Book</span>
+        <span className="text-zinc-900">Book</span>
       </nav>
 
       <BookingFlow
